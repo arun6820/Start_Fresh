@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/style/home.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/filter.js') }}"></script>
+
+    
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="header">
+        <h1>Find your dream job</h1>
+    </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/advanced-search">Advanced search</a></li>
+            <li><a href="/popular-jobs">Popular jobs</a></li>
+        </ul>
+    
+    </div>
+</body>
+<div class="pageTitle">
+    <h5> <a href="/">Home</a>>Search result</h5>
+</div>
+<div class="row">
+    <div class="col-2 menu" style="background-color: rgb(212, 212, 212);">
+
+        <!-- Salary filter -->
+        <div>
+            <h5 class="menuLabel">Salary Range</h5>
+        <div class="menuItem">
+            <input type="text" id="from" class="form-control"  placeholder="From">
+        </div>
+        <br/>
+        <div class="menuItem">
+            <input type="text" id="to" class="form-control"  placeholder="To">
+        </div>
+        </div>
+
+        <!-- Date filter -->
+        <br/>
+        <br/>
+        <br/>
+        <h5 class="menuLabel">Sort by date</h5>
+        <div>
+            <select name="date_filter" class="form-control">
+                <option>Newest first</option>
+                <option>Old first</option>
+            </select>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <h5 class="menuLabel">Filter by employer</h5>
+        <br/>
+        <div class="employer-container">
+            {% for employer in employer_names %}
+            <div >
+                <input class="form-check-input" type="radio" value="{{ employer.employerId }}" id="{{ employer.employerId }}" name="employer">
+                <label class="form-check-label employer-label" for="flexCheckChecked">
+                  {{employer.employerName}}
+                </label>
+            </div>
+           {% endfor %}
+        </div>
+
+
+
+    </div>
+    <div class="col-10" id="job-results">
+        {% for job in job_results %}
+                <a href="{{ url_for('jobDetails') }}?jobId={{ job.jobId }}" class="card-link">
+                    <div class="card">
+                        <h2>{{ job.jobTitle }}</h2>
+                        <p>Date: {{ job.date }}</p>
+                        <p>Salary: {{ job.currency }} {{ job.minimumSalary }} - {{ job.currency }} {{ job.maximumSalary }}</p>
+                        <p>Location: {{ job.locationName }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+    </div>
+</div>
+
+</html>

@@ -1,0 +1,193 @@
+body {
+    text-align: center;
+}
+html {
+    background: linear-gradient(-60deg, #23e2cb, black);
+    background-repeat: no-repeat;
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+}
+
+
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+}
+
+.navbar ul li {
+    display: inline;
+    margin-left: 10px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65vh;
+    flex-direction: column;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.search-box label {
+    margin-right: 5px;
+}
+
+.search-box input[type="text"] {
+    padding: 5px;
+    width: 200px;
+}
+
+.search-box button {
+    padding: 5px 10px;
+}
+
+.card-container {
+    display: flex;
+    overflow-x: scroll;
+    padding: 10px;
+    scroll-snap-type: x mandatory;
+}
+
+.card {
+    flex: 0 0 600px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 50px;
+    padding: 10px;
+    scroll-snap-align: start;
+
+}
+
+.card h2, .card p {
+    margin: 10px;
+}
+.card-wrapper {
+    display: flex;
+    width: max-content;
+    transition: transform 0.3s ease-in-out;
+    }
+
+    .scroll-left,
+.scroll-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: #f2f2f2;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.scroll-left {
+    left: 10px;
+}
+
+.scroll-right {
+    right: 10px;
+}
+.header{
+    margin:auto;
+}
+.pageTitle{
+    align-items: start;
+    display: flex;
+}
+.menu{
+    padding-top: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+    align-items: start;
+}
+
+.menuItem{
+    margin:auto;
+}
+
+.menuLabel{
+   text-align: left;
+}
+
+.employer-label {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    max-width: 200px; 
+}
+
+.employer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.job-description {
+    text-align: left;
+}
+.info {
+    border-color: #2196F3;
+    color: dodgerblue;
+  }
+  .info:hover {
+    background: #2196F3;
+    color: white;
+  }
+  .container {
+    margin-bottom: 30px; 
+}
+
+.advanced-search-box {
+    align-items: start;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 15px;
+    width: 50vw;
+}
+
+
+.search-item {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.search-item-label {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.search-item input[type="text"] {
+    padding: 5px;
+    width: 200px;
+}

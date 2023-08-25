@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/style/home.css">
+    
+</head>
+<body>
+    <div class="navbar">
+        <div class="header">
+        <h1>Find your dream job</h1>
+    </div>
+        <ul>
+            <li><a href="/advanced-search">Advanced search</a></li>
+            <li><a href="/popular-jobs">Popular jobs</a></li>
+        </ul>
+    
+    </div>
+    <form action="/search" method="GET">
+    <div class="center">
+        <div class="search-box">
+            
+            <label for="looking">Looking for:</label>&nbsp;&nbsp;
+            <input type="text" id="looking" name="looking" class="form-control" placeholder="Job,Company etc.">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="where">Where:</label>&nbsp;&nbsp;
+            <input type="text" id="where" name="where" class="form-control" placeholder="Country,City etc.">
+            &nbsp;&nbsp;
+            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</button>
+      
+        </div>
+        </div>
+    </form>
+    </div>
+        <div class="card-container">
+            
+            <div class="card-wrapper">
+                {% for job in job_results %}
+                <a href="{{ url_for('jobDetails') }}?jobId={{ job.jobId }}" class="card-link">
+                    <div class="card" style="width: 450px; height: 250px;">
+                        <h2>{{ job.jobTitle }}</h2>
+                        <p>Date: {{ job.date }}</p>
+                        <p>Salary: {{ job.currency }} {{ job.minimumSalary }} - {{ job.currency }} {{ job.maximumSalary }}</p>
+                        <p>Location: {{ job.locationName }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+            </div>
+            <button class="scroll-left">&lt;</button>
+            <button class="scroll-right">&gt;</button>
+           
+        </div>
+    
+    <script src="../static/js/scroll.js"></script>
+</body>
+</html>
