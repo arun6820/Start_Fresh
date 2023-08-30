@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/style/home.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/job_details.js') }}"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="header">
+            <h1>Find your dream job</h1>
+        </div>
+        <ul>
+            <li><a href="/advanced-search">Advanced search</a></li>
+            <li><a href="/popular-jobs">Popular jobs</a></li>
+        </ul>
+    </div>
+    <div class="pageTitle">
+        <h5> <a href="/">Home</a>>Job details</h5>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10" id="job-results">
+                <div class="card">
+                    <h2>{{ job_details.jobTitle }}</h2>
+                    <p>{{ job_details.datePosted }} by {{ job_details.employerName }}</p>
+                    <p>Location: {{ job_details.locationName }}</p>
+                    <p>{{ job_details.currency }} : {{ job_details.yearlyMinimumSalary }} - {{ job_details.yearlyMaximumSalary }} Per Annum</p>
+                    <br>
+                    <br>
+                    <br>
+                    <h4>Job Description:</h4>
+                    <br>
+                    <div style="text-align: left;">
+                        {{ job_details.jobDescription | safe }}
+                    </div>
+                    
+                    <button id="apply-button" class="btn info" data-job-url="{{ job_details.jobUrl }}">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
