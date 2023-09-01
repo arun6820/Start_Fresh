@@ -69,8 +69,15 @@ def advancedSearchTemplatePage():
 
 @app.route('/popular-jobs', methods=['GET'])
 def searchPopular():
-
-    return render_template('popular_jobs.html')
+    job_results = api_service.search()
+    employer_names = [] 
+    for job_result in job_results:
+        employer_info = {
+            "employerId": job_result["employerId"],
+            "employerName": job_result["employerName"]
+        }
+        employer_names.append(employer_info)
+    return render_template('popular_jobs.html', job_results=job_results,employer_names=employer_names)
 
 
 
