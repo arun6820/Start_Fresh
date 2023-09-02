@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/style/home.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/advanced_search.js') }}"></script>
+    
+</head>
+<body>
+    <div class="navbar">
+        <div class="header">
+        <h1>Find your dream job</h1>
+    </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/popular-jobs">Popular jobs</a></li>
+        </ul>
+    
+    </div>
+    <form method="POST">
+    <span style="display:inline-block; height: 60px;"></span>
+    <div class="center">
+        <div class="advanced-search-box">
+            <span style="display:inline-block; height: 30px;"></span>
+            
+            <div class="row">
+                <div class="col-2 search-item-label">
+                    <span style="display:inline-block; width: 20px;"></span>
+                    <label for="others ">Looking for</label>
+                </div>
+                <div class="col-1 search-item-label">
+                    <label for="others">:</label>
+                </div>
+                <div class="col-9 search-item-label">
+                    <input type="text" id="looking" name="looking" class="form-control" placeholder="Job,Company etc.">
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                <div class="col-2 search-item-label">
+                    <span style="display:inline-block; width: 20px;"></span>
+                    <label for="others ">Where</label>
+                </div>
+                <div class="col-1 search-item-label">
+                    <label for="others">:</label>
+                </div>
+                <div class="col-9 search-item-label">
+                    <input type="text" id="where" name="where" class="form-control" placeholder="Country,City etc.">
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+
+                <div class="col-2 search-item-label">
+                    <span style="display:inline-block; width: 20px;"></span>
+                    <label for="others ">Salary</label>
+                </div>
+
+                <div class="col-1 search-item-label">
+                    <label for="others">:</label>
+                </div>
+
+                <div class="col-9 search-item-label">
+                    <input type="text" id="salary_from" name="salary_from" class="form-control" placeholder="Minimum">&nbsp;&nbsp;
+                    <input type="text" id="salary_to" name="salary_to" class="form-control" placeholder="Maximum">
+                 </div>
+            </div>
+            <br/>
+            
+            <!-- checkbox for job types -->
+            <div class="row">
+                <div class="col-2 search-item-label">
+                    <span style="display:inline-block; width: 20px;"></span>
+                    <label for="others ">Job Type</label>
+                </div>
+                <div class="col-1 search-item-label">
+                    <label for="others">:</label>
+                </div>
+                <div class="col-9 search-item-label">
+                    <div >
+                        <input class="form-check-input" type="checkbox" value="permenent"  name="jobtype">
+                        <label class="form-check-label employer-label" for="flexCheckChecked">
+                            Permenent
+                        </label>
+                    </div>
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <div >
+                        <input class="form-check-input" type="checkbox" value="contract"  name="jobtype">
+                        <label class="form-check-label employer-label" for="flexCheckChecked">
+                            Contract
+                        </label>
+                    </div>
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <div >
+                        <input class="form-check-input" type="checkbox" value="temporary"  name="jobtype">
+                        <label class="form-check-label employer-label" for="flexCheckChecked">
+                            Temporary
+                        </label>
+                    </div>
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <div >
+                        <input class="form-check-input" type="checkbox" value="partTime"  name="jobtype">
+                        <label class="form-check-label employer-label" for="flexCheckChecked">
+                            Part time
+                        </label>
+                    </div>
+                    <span style="display:inline-block; width: 30px;"></span>
+                    <div >
+                        <input class="form-check-input" type="checkbox" value="fullTime"  name="jobtype">
+                        <label class="form-check-label employer-label" for="flexCheckChecked">
+                            Full time
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- checkbox for other types -->
+                <div class="row">
+                    <div class="col-2 search-item-label">
+                        <span style="display:inline-block; width: 20px;"></span>
+                        <label for="others ">Others</label>
+                    </div>
+                    <div class="col-1 search-item-label">
+                        <label for="others">:</label>
+                    </div>
+                    <div class="col-9 search-item-label">
+                        <div class="search-item">
+                        <div >
+                            <input class="form-check-input" type="checkbox" value="graduate"  name="others">
+                            <label class="form-check-label employer-label" for="flexCheckChecked">
+                                Graduate
+                            </label>
+                        </div>
+                        <span style="display:inline-block; width: 30px;"></span>
+                        <div >
+                            <input class="form-check-input" type="checkbox" value="postedByRecruitmentAgency"  name="others">
+                            <label class="form-check-label " for="flexCheckChecked">
+                                Posted by recruitment agency
+                            </label>
+                        </div>
+                        <span style="display:inline-block; width: 30px;"></span>
+                        <div >
+                            <input class="form-check-input" type="checkbox" value="postedByDirectEmployer"  name="others">
+                            <label class="form-check-label employer-label" for="flexCheckChecked">
+                                Posted by direct employer
+                            </label>
+                        </div>
+                    </div>
+                    </div>
+
+                
+            </div>
+
+            <span style="display:inline-block; height: 30px;"></span>
+            <button id="search-button" class="btn info" style="width: 45vw;">Search Job</button>
+            <span style="display:inline-block; height: 60px;"></span>
+
+
+        </div>
+    </div>
+    </form>
+    </div>
+
+</body>
+</html>

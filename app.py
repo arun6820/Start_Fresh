@@ -57,15 +57,63 @@ def jobDetails():
     return render_template('job_details.html')
 
 
+
 @app.route('/advanced-search', methods=['GET', 'POST'])
 def advancedSearchTemplate():
-    
+    if request.method == 'POST':
+        if request.headers.get('Content-Type') == 'application/json':
+            search_data = request.json
+            job_results =  api_service.advancedSearch(search_data)
+            employer_names = [] 
+            for job_result in job_results:
+                employer_info = {
+                    "employerId": job_result["employerId"],
+                    "employerName": job_result["employerName"]
+                }
+                employer_names.append(employer_info)
+
+            response_data = {
+            "job_results": job_results,
+            "employer_names": employer_names
+            }
+            searchResult(job_results,employer_names)
+            return jsonify(response_data)
+                
+        else:
+            return render_template('advanced_search.html')
+            
     return render_template('advanced_search.html')
 
 @app.route('/advanced-search_page', methods=['GET'])
 def advancedSearchTemplatePage():
-   
-    return render_template('search_result.html')
+    looking = request.args.get('looking')
+    where = request.args.get('where')
+    salary_from = request.args.get('salaryFrom')
+    salary_to = request.args.get('salaryTo')
+    jobTypes = request.args.get('jobTypes')
+    otherTypes = request.args.get('otherTypes')
+    
+    search_data = {
+        "looking": looking,
+        "where": where,
+        "salary_from": salary_from,
+        "salary_to": salary_to,
+        "jobtype": jobTypes,
+        "others": otherTypes
+    }
+
+    job_results =  api_service.advancedSearch(search_data)
+    employer_names = [] 
+    for job_result in job_results:
+        employer_info = {
+                    "employerId": job_result["employerId"],
+                    "employerName": job_result["employerName"]
+                }
+        employer_names.append(employer_info)
+       
+    return render_template('search_result.html', job_results=job_results,employer_names=employer_names)
+
+
 
 @app.route('/popular-jobs', methods=['GET'])
 def searchPopular():

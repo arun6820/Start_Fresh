@@ -48,5 +48,47 @@ class ApiService():
             return job_results
         else:
             return []
-        
+    
+
+    def advancedSearch(self,params):
+
+        looking = params['looking']
+        where = params['where']
+        salary_from = params['salary_from']
+        salary_to = params['salary_to']
+        permanent = True
+        contract = True
+        temp = True
+        partTime = True
+        fullTime = True
+        graduate = True
+        postedByRecruitmentAgency = True
+        postedByDirectEmployer = True
+
+        permanent = "permanent" in params['jobtype']
+        contract = "contract" in params['jobtype']
+        temp = "temporary" in params['jobtype']
+        partTime = "partTime" in params['jobtype']
+        fullTime = "fullTime" in params['jobtype']
+        graduate = "graduate" in params['others']
+        postedByRecruitmentAgency = "postedByRecruitmentAgency" in params['others']
+        postedByDirectEmployer = "postedByDirectEmployer" in params['others']
+
+       
+        api_url = (
+            f"{self.base_url}search?keywords={looking}&locationName={where}&minimumSalary={salary_from}&maximumSalary={salary_to}"
+            f"&permanent={'True' if permanent else ''}&contract={'True' if contract else ''}&temp={'True' if temp else ''}"
+            f"&partTime={'True' if partTime else ''}&fullTime={'True' if fullTime else ''}"
+            f"&postedByRecruitmentAgency={'True' if postedByRecruitmentAgency else ''}"
+            f"&postedByDirectEmployer={'True' if postedByDirectEmployer else ''}&graduate={'True' if graduate else ''}"
+)
+        print(api_url)
+        response = requests.get(api_url, auth=HTTPBasicAuth(self.api_username,self.api_password))
+
+        if response.status_code == 200:
+            api_data = response.json()
+            job_results = api_data.get('results', [])
+            return job_results
+        else:
+            return []
     
