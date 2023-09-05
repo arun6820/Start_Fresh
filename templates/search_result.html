@@ -72,7 +72,12 @@
 
     </div>
     <div class="col-10" id="job-results">
-        {% for job in job_results %}
+        {% if job_results|length == 0 %}
+            <div class="no-results">
+                <p>No jobs found.</p>
+            </div>
+        {% else %}
+            {% for job in job_results %}
                 <a href="{{ url_for('jobDetails') }}?jobId={{ job.jobId }}" class="card-link">
                     <div class="card">
                         <h2>{{ job.jobTitle }}</h2>
@@ -82,6 +87,7 @@
                     </div>
                 </a>
             {% endfor %}
+        {% endif %}
     </div>
 </div>
 

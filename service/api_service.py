@@ -48,7 +48,17 @@ class ApiService():
             return job_results
         else:
             return []
-    
+        
+    def getJobDetailsById(self,jobId):
+        api_url = f"{self.base_url}jobs/{jobId}"
+        response = requests.get(api_url, auth=HTTPBasicAuth(self.api_username,self.api_password))
+
+        if response.status_code == 200:
+            api_data = response.json()
+            return api_data
+        else:
+            return []
+        
 
     def advancedSearch(self,params):
 
@@ -74,7 +84,7 @@ class ApiService():
         postedByRecruitmentAgency = "postedByRecruitmentAgency" in params['others']
         postedByDirectEmployer = "postedByDirectEmployer" in params['others']
 
-       
+        # api_url = f"{self.base_url}search?keywords={looking}&locationName={where}&minimumSalary={salary_from}&maximumSalary={salary_to}&permanent={permanent}&contract={contract}&temp={temp}&partTime={partTime}&fullTime={fullTime}&postedByRecruitmentAgency={postedByRecruitmentAgency}&postedByDirectEmployer={postedByDirectEmployer}&graduate={graduate}"
         api_url = (
             f"{self.base_url}search?keywords={looking}&locationName={where}&minimumSalary={salary_from}&maximumSalary={salary_to}"
             f"&permanent={'True' if permanent else ''}&contract={'True' if contract else ''}&temp={'True' if temp else ''}"
@@ -91,4 +101,3 @@ class ApiService():
             return job_results
         else:
             return []
-    

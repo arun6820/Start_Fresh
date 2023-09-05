@@ -50,12 +50,12 @@ def searchJobs():
     job_results = api_service.filterJobs(salary_from,salary_to,date_filter,employers)
     return jsonify(job_results)
 
-
 @app.route('/job-details', methods=['GET'])
 def jobDetails():
     jobId = request.args.get('jobId')
-    return render_template('job_details.html')
+    job_details = api_service.getJobDetailsById(jobId)
 
+    return render_template('job_details.html',job_details=job_details)
 
 
 @app.route('/advanced-search', methods=['GET', 'POST'])
@@ -102,6 +102,7 @@ def advancedSearchTemplatePage():
         "others": otherTypes
     }
 
+    print(search_data)
     job_results =  api_service.advancedSearch(search_data)
     employer_names = [] 
     for job_result in job_results:
@@ -110,13 +111,11 @@ def advancedSearchTemplatePage():
                     "employerName": job_result["employerName"]
                 }
         employer_names.append(employer_info)
-       
     return render_template('search_result.html', job_results=job_results,employer_names=employer_names)
-
-
 
 @app.route('/popular-jobs', methods=['GET'])
 def searchPopular():
+
     job_results = api_service.search()
     employer_names = [] 
     for job_result in job_results:
